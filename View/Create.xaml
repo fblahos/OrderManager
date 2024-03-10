@@ -1,0 +1,38 @@
+﻿<Window x:Class="OrderManager.View.Create" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:OrderManager.Controls"
+        WindowStartupLocation="CenterOwner" WindowStyle="None" WindowState="Normal"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="#eff2f7" Width="1600" MaxWidth="1600"
+        MaxHeight="1400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <!-- Header Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right"
+                Margin="5,0">
+            <Button x:Name="btnClose" Width="40" Height="40" BorderBrush="Transparent" Background="Transparent"
+                    Foreground="black" Content="✕" Click="btnClose_Click" FontSize="14" FontWeight="Bold" />
+        </StackPanel>
+
+        <!-- Content inside ScrollViewer -->
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <controls:OrderControl x:Name="orderControl" />
+                <controls:CustomerControl x:Name="customerControl" />
+                <controls:PlatformControl x:Name="platformControl" />
+                <controls:MaterialControl x:Name="materialControl" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Create Button -->
+        <Button x:Name="CreateOrderButton" Style="{StaticResource saveOrderButtonStyle}"
+                Click="createOrderButton_Click" />
+
+    </Grid>
+</Window>
+

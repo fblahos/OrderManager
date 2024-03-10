@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="OrderManager.Controls.OrderControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:OrderManager.Controls" Height="60" Width="1600" FontSize="16"
+        Background="#eff2f7">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="1" Background="#79bdcc">
+            <TextBlock FontWeight="bold" Text="Číslo zakázky" Margin="10,0,0,0" FontSize="18" Foreground="white"
+                    VerticalAlignment="Center" />
+            <TextBox x:Name="orderNumberTextBox" Margin="10,5" Width="200" Height="30" FontSize="18"
+                    Text="{Binding Number, Mode=TwoWay}" />
+            <TextBlock FontWeight="bold" Text="Název zakázky" Margin="50,0,0,0" FontSize="18" Foreground="white"
+                    VerticalAlignment="Center" />
+            <TextBox x:Name="orderNameTextBox" Margin="10,5" Width="500" Height="30" FontSize="18"
+                    Text="{Binding Name, Mode=TwoWay}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="OrderManager.Controls.PlatformControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:OrderManager.Controls" FontSize="16" Background="#eff2f7" MaxHeight="400"
+        Width="1600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+
+        <!--Plošina-->
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Margin="0">
+            <TextBlock Grid.Column="0" Grid.Row="0" FontSize="20" Text="Plošina" FontWeight="SemiBold"
+                    Foreground="#121518" />
+            <Separator Margin="0,10" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Délka" />
+                <TextBox Width="100" Margin="10,0" />
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Šířka" />
+                <TextBox Width="100" Margin="10,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Horní nájezd"
+                        VerticalAlignment="Center" />
+                <ComboBox x:Name="horniNajezdComboBox" SelectedItem="{Binding HorniNajezd, Mode=TwoWay}">
+                    <ComboBoxItem>150</ComboBoxItem>
+                    <ComboBoxItem>200</ComboBoxItem>
+                    <ComboBoxItem>300</ComboBoxItem>
+                    <ComboBoxItem>žádný</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Dolní nájezd"
+                        VerticalAlignment="Center" />
+                <ComboBox SelectedItem="{Binding DolniNajezd, Mode=TwoWay}">
+                    <ComboBoxItem>150</ComboBoxItem>
+                    <ComboBoxItem>200</ComboBoxItem>
+                    <ComboBoxItem>300</ComboBoxItem>
+                    <ComboBoxItem>žádný</ComboBoxItem>
+                </ComboBox>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Čelní nájezd"
+                        VerticalAlignment="Center" />
+                <ComboBox SelectedItem="{Binding Platform.CelniNajezd, Mode=TwoWay}">
+                    <ComboBoxItem>150</ComboBoxItem>
+                    <ComboBoxItem>200</ComboBoxItem>
+                    <ComboBoxItem>300</ComboBoxItem>
+                    <ComboBoxItem>žádný</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <RadioButton GroupName="Options" Content="Pevné čelo"
+                        Style="{StaticResource SquareRadioButtonStyle}" />
+                <RadioButton GroupName="Options" Content="Sklopné čelo"
+                        Style="{StaticResource SquareRadioButtonStyle}" />
+                <RadioButton GroupName="Options" Content="Čelní nájezd 85°"
+                        Style="{StaticResource SquareRadioButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Sedačka" VerticalAlignment="Center" />
+                <ComboBox Width="100">
+                    <ComboBoxItem>žádná</ComboBoxItem>
+                    <ComboBoxItem>ocelová</ComboBoxItem>
+                    <ComboBoxItem>čalouněná</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Nosnost" VerticalAlignment="Center" />
+                <ComboBox Width="80">
+                    <ComboBoxItem>225 kg</ComboBoxItem>
+                    <ComboBoxItem>250 kg</ComboBoxItem>
+                    <ComboBoxItem>300 kg</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <RadioButton GroupName="Folding mechanism" Content="Automat"
+                        Style="{StaticResource SquareRadioButtonStyle}" />
+                <RadioButton GroupName="Folding mechanism" Content="Manuál"
+                        Style="{StaticResource SquareRadioButtonStyle}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20">
+                <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Číslo podlahy" />
+                <TextBox Width="200" Margin="10,0" />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
