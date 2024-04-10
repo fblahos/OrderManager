@@ -6,8 +6,9 @@ namespace OrderManager.Model
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public double Delka { get; set; }
-        public double Sirka { get; set; }
+
+        public double Length { get; set; }
+        public double Width { get; set; }
         public Najezd HorniNajezd { get; set; }
         public Najezd DolniNajezd { get; set; }
         public Najezd CetniNajezd { get; set; }

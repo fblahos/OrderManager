@@ -6,6 +6,7 @@ namespace OrderManager.Model
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
         public Material? material { get; set; }
         public Surface? PlosinaVoziky { get; set; }
         public Surface? DrahaPrichky { get; set; }

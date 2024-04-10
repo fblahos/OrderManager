@@ -2,10 +2,11 @@
 
 namespace OrderManager.Model
 {
-    public class Adress
+    public class Address
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
         public string? Firma { get; set; }
         public string? Jmeno { get; set; }
         public string? Ulice { get; set; }

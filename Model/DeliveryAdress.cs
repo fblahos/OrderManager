@@ -1,7 +1,7 @@
 ﻿namespace OrderManager.Model
 {
-    public class DeliveryAdress : Adress
+    public class DeliveryAdress
     {
-
+        public Address? Address { get; set; }
     }
 }

@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 
+
+
 namespace OrderManager.Model
 {
 
@@ -11,34 +13,30 @@ namespace OrderManager.Model
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        [Required]
+        [SQLite.MaxLength(50)]
+
         public string? Name { get; set; }
 
+        [SQLite.MaxLength(100)]
         [Required]
         public string? Number { get; set; }
+
+        [SQLite.MaxLength(50)]
+        [Required]
         public int? WeekOfManufacture { get; set; }
 
         public string? Product { get; set; }
-
         public string? Status { get; set; }
         public string? Operation { get; set; }
         public string? Date { get; set; }
 
-
-        [ForeignKey("Customer")]
+        [ForeignKey("Customer")] // Odkaz na třídu Customer
         public int CustomerId { get; set; }
 
-        [ForeignKey("Distributor")]
-        public int DistributorId { get; set; }
 
-        [ForeignKey("DeliveryAdress")]
-        public int DeliveryAdressId { get; set; }
-
-        [ForeignKey("Platform")]
+        [ForeignKey("Platform")] // Odkaz na třídu Customer
         public int PlatformId { get; set; }
 
-        [ForeignKey("SurfaceTreatmen")]
-        public int SurfaceTreatmenId { get; set; }
 
 
         public enum Products

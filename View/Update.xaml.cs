@@ -14,17 +14,21 @@ namespace OrderManager
             InitializeComponent();
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            UpdateDatabase(selectedOrder);
+            orderControl.DataContext = selectedOrder;
+
+            //UpdateDatabase(selectedOrder);
+
+
         }
 
         //Aktualizace
-        private void UpdateDatabase(Order selectedOrder)
-        {
+        //private void UpdateDatabase(Order selectedOrder)
+        //{
 
-            using SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath);
+        //    using SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath);
 
-            connection.Update(selectedOrder);
-        }
+        //    connection.Update(selectedOrder);
+        //}
 
 
         //Zavření okna

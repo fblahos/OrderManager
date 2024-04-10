@@ -83,6 +83,42 @@
             </Setter>
         </Style>
 
+        <!--Refresh orders tlačítko-->
+        <Style x:Key="refreshOrdersButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF1D5BA8" />
+            <Setter Property="Foreground" Value="#eff2f7" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="left" />
+            <Setter Property="Grid.Row" Value="1" />
+            <Setter Property="Margin" Value="200,5,0,0" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Visibility" Value="Visible" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ButtonBase}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="50"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}" RecognizesAccessKey="True"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Height" Value="35" />
+                                <Setter Property="Width" Value="35" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!--Uložit  tlačítko-->
         <Style x:Key="saveOrderButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FF1D5BA8" />
@@ -372,7 +408,7 @@
 
                 <Trigger Property="IsSelected" Value="True">
                     <Setter Property="Background" Value="{StaticResource HoverBackgroundColor}" />
-                    <Setter Property="Foreground" Value="{StaticResource HoverForegroundColor}" />
+                        <Setter Property="Foreground" Value="{StaticResource HoverForegroundColor}" />
                 </Trigger>
             </Style.Triggers>
         </Style>

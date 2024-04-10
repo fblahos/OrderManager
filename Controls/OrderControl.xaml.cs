@@ -1,5 +1,4 @@
-﻿using OrderManager.Model;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace OrderManager.Controls
 {
@@ -8,10 +7,10 @@ namespace OrderManager.Controls
     /// </summary>
     public partial class OrderControl : UserControl
     {
+
         public OrderControl()
         {
-            Order order = new Order();
-            DataContext = order;
+
             InitializeComponent();
         }
     }

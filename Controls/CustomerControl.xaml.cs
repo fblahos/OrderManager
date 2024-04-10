@@ -1,5 +1,4 @@
-﻿using OrderManager.Model;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace OrderManager.Controls
 {
@@ -10,8 +9,7 @@ namespace OrderManager.Controls
     {
         public CustomerControl()
         {
-            Customer customer = new Customer();
-            DataContext = customer;
+
             InitializeComponent();
         }
     }

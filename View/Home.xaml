@@ -3,12 +3,19 @@
         xmlns:Icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:dg="clr-namespace:DataGridExtensions;assembly=DataGridExtensions"
         xmlns:av="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av"
-        xmlns:local="clr-namespace:OrderManager.View" x:Class="OrderManager.View.Home" Height="900" Width="1600"
-        WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized" AllowsTransparency="True"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Transparent">
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:OrderManager.ViewModel" mc:Ignorable="av" x:Class="OrderManager.View.Home"
+        Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized"
+        AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Transparent"
+        x:Name="HomeWindow">
 
-    <Border Background="#eff2f7" CornerRadius="20">
+    <Window.Resources>
+        <ResourceDictionary>
+            <vm:OrderVM x:Key="vm" />
+        </ResourceDictionary>
+    </Window.Resources>
+  
+    <Border Background="#eff2f7" CornerRadius="20" DataContext="{StaticResource vm}">
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -130,6 +137,12 @@
 
             <!--Pravý sloupec-->
             <Grid Grid.Column="1">
+                <Grid.DataContext>
+                    <vm:OrderVM />
+                </Grid.DataContext>
+                <Grid.BindingGroup>
+                    <BindingGroup />
+                </Grid.BindingGroup>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
@@ -160,20 +173,31 @@
                         HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#121518" />
 
                 <!--Nová zakázka tlačítko-->
-                <Button Style="{StaticResource newOrderButtonStyle}" x:Name="newOrderButton"
-                        Click="newOrderButton_Click">
+                <Button Style="{StaticResource newOrderButtonStyle}" 
+                     Command="{Binding AddOrderCommand}">
+
                     <Icons:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Height="20" Width="20"
                             HorizontalAlignment="Center" Margin="5,5" />
                 </Button>
 
+                <Button Style="{StaticResource refreshOrdersButtonStyle}"
+                        Command="{Binding RefreshOrderListCommand}">
+
+                    <Icons:PackIconMaterial Kind="Reload" VerticalAlignment="Center" Height="20" Width="20"
+                            HorizontalAlignment="Center" Margin="2,0,0,0" />
+                </Button>
+
                 <!--Separátor-->
                 <Separator Height="10" Grid.Row="2" Background="#dae2ea" Margin="40,0" />
-
-                <!--Data-->
-                <DataGrid CellStyle="{StaticResource DataGridCellStyle}" Style="{StaticResource DataGridStyle}"
+  
+                <DataGrid  DataContext="{StaticResource vm}"
+                    CellStyle="{StaticResource DataGridCellStyle}" Style="{StaticResource DataGridStyle}"
                         x:Name="orderDataGrid" RowStyle="{StaticResource DataGridRowStyle}"
                         ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
-                        MouseRightButtonDown="orderDataGrid_RightClick">
+                        MouseRightButtonDown="orderDataGrid_RightClick"
+                           ItemsSource="{Binding Orders, Mode=TwoWay}"
+                        SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Collapsed" />
@@ -188,26 +212,30 @@
                         <DataGridTemplateColumn Header="Akce" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" DataContext="{StaticResource vm}">
                                         <Button Style="{StaticResource doneOrderButtonStyle}">
                                             <Icons:PackIconMaterial Kind="CheckOutline" />
                                         </Button>
+
                                         <Button x:Name="updateOrderButton"
                                                 Style="{StaticResource editOrderButtonStyle}"
-                                                Click="updateOrderButton_Click">
+                                                Command="{Binding AddOrderCommand}">
                                             <Icons:PackIconMaterial Kind="PencilOutline" />
                                         </Button>
+
                                         <Button x:Name="deleteOrderButton"
                                                 Style="{StaticResource deleteOrderButtonStyle}"
-                                                Click="deleteOrderButton_Click">
+                                                Command="{Binding DeleteOrderCommand}"
+                                                CommandParameter="{Binding SelectedOrder}">
+
                                             <Icons:PackIconMaterial Kind="DeleteOutline" />
                                         </Button>
+
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-
                 </DataGrid>
 
                 <!--Dolní lišta-->

@@ -1,4 +1,5 @@
-﻿using OrderManager.Model;
+﻿using OrderManager.Controls;
+using OrderManager.Model;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,11 +13,12 @@ namespace OrderManager.View
     {
         public Detail(Order selectedOrder)
         {
+            OrderControl orderControl = new OrderControl();
             InitializeComponent();
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             ZamknutiVlastnosti();
-
+            ShowDialog();
         }
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {

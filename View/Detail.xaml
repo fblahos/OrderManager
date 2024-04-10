@@ -21,11 +21,7 @@
         <ScrollViewer x:Name="scrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="controlsStackPanel">
-                <controls:OrderControl x:Name="orderControl">
-                    <controls:OrderControl.DataContext>
-                        <model:Order />
-                    </controls:OrderControl.DataContext>
-                </controls:OrderControl>
+                <controls:OrderControl x:Name="orderControl" />
 
                 <controls:CustomerControl x:Name="customerControl">
                     <controls:CustomerControl.DataContext>
