@@ -5,10 +5,10 @@ namespace OrderManager.ViewModel.Commands
 {
     public class CreateOrderCommand : ICommand
     {
-        public OrderVM OrderVM { get; set; }
-        public CreateOrderCommand(OrderVM orderVM)
+        public CreateOrderVM CreateOrderVM { get; set; }
+        public CreateOrderCommand(CreateOrderVM orderVM)
         {
-            OrderVM = orderVM;
+            CreateOrderVM = orderVM;
         }
 
         public event EventHandler? CanExecuteChanged;
@@ -20,8 +20,9 @@ namespace OrderManager.ViewModel.Commands
 
         public void Execute(object? parameter)
         {
-            OrderVM.CreateOrder();
+            CreateOrderVM.CreateOrder();
             CloseWindow();
+            HomeVM.GetOrders();
         }
         private void CloseWindow()
         {

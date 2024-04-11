@@ -4,7 +4,7 @@ using OrderManager.ViewModel.Helpers;
 
 namespace OrderManager.ViewModel
 {
-    public class OrderVM
+    public class CreateOrderVM
     {
         public CreateOrderCommand CreateOrderCommand { get; set; }
 
@@ -13,7 +13,7 @@ namespace OrderManager.ViewModel
         public double Width { get; set; }
         public double Length { get; set; }
 
-        public OrderVM()
+        public CreateOrderVM()
         {
             CreateOrderCommand = new CreateOrderCommand(this);
         }

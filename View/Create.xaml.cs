@@ -6,7 +6,7 @@ namespace OrderManager.View
     {
         public Create()
         {
-            OrderVM orderVM = new OrderVM();
+            CreateOrderVM orderVM = new CreateOrderVM();
             DataContext = orderVM;
             InitializeComponent();
             Owner = Application.Current.MainWindow;

@@ -1,5 +1,4 @@
-﻿using OrderManager.ViewModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 
@@ -17,10 +16,9 @@ namespace OrderManager.View
             //  orders = new List<Order>();
             //clickedButtons = new List<Button>();
             //selectedItemsOfWeekList = new List<string?>();
-            HomeVM homeVM = new HomeVM();
-            this.DataContext = homeVM;
+
             InitializeComponent();
-            orderDataGrid.DataContext = homeVM;
+            //orderDataGrid.DataContext = homeVM;
 
         }
 

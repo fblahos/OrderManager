@@ -2,13 +2,13 @@
 
 namespace OrderManager.ViewModel.Commands
 {
-    public class RefreshOrderListCommand : ICommand
+    public class RefreshOrdersCommand : ICommand
     {
         public HomeVM HomeVM { get; set; }
 
         public event EventHandler? CanExecuteChanged;
 
-        public RefreshOrderListCommand(HomeVM homeVM)
+        public RefreshOrdersCommand(HomeVM homeVM)
         {
             HomeVM = homeVM;
         }
@@ -22,7 +22,7 @@ namespace OrderManager.ViewModel.Commands
 
         public void Execute(object? parameter)
         {
-            // ViewModel.RefreshOrders();
+            HomeVM.GetOrders();
         }
     }
 

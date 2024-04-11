@@ -8,12 +8,12 @@ namespace OrderManager.ViewModel
 {
     public class HomeVM : INotifyPropertyChanged
     {
-        public ObservableCollection<Order> Orders { get; set; }
+        public static ObservableCollection<Order>? Orders { get; set; }
         public CreateWindowCommand CreateWindowCommand { get; set; }
         public DeleteOrderCommand DeleteOrderCommand { get; set; }
         public EditOrderCommand EditOrderCommand { get; set; }
         public DetailOrderCommand DetailOrderCommand { get; set; }
-        public RefreshOrderListCommand RefreshOrderListCommand { get; set; }
+        public RefreshOrdersCommand RefreshOrdersCommand { get; set; }
 
         private Order? selectedOrder;
 
@@ -39,7 +39,7 @@ namespace OrderManager.ViewModel
             CreateWindowCommand = new CreateWindowCommand(this);
             DeleteOrderCommand = new DeleteOrderCommand(this);
             EditOrderCommand = new EditOrderCommand(this);
-            RefreshOrderListCommand = new RefreshOrderListCommand(this);
+            RefreshOrdersCommand = new RefreshOrdersCommand(this);
             DetailOrderCommand = new DetailOrderCommand(this);
             GetOrders();
         }
@@ -55,7 +55,8 @@ namespace OrderManager.ViewModel
             }
         }
 
-        private void GetOrders()
+
+        public static void GetOrders()
         {
             Orders.Clear();
             var orders = DatabaseHelper.Read<Order>();
