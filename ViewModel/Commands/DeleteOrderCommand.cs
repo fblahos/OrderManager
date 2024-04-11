@@ -1,15 +1,15 @@
 ﻿using OrderManager.ViewModel;
 using System.Windows.Input;
 
-class DeleteOrderCommand : ICommand
+public class DeleteOrderCommand : ICommand
 {
-    public OrderVM ViewModel { get; set; }
+    public HomeVM HomeVM { get; set; }
 
     public event EventHandler? CanExecuteChanged;
 
-    public DeleteOrderCommand(OrderVM vm)
+    public DeleteOrderCommand(HomeVM homeVM)
     {
-        ViewModel = vm;
+        HomeVM = homeVM;
     }
 
     public bool CanExecute(object? parameter)
@@ -27,6 +27,6 @@ class DeleteOrderCommand : ICommand
 
     public void Execute(object? parameter)
     {
-        ViewModel.DeleteOrder();
+        HomeVM.DeleteOrder();
     }
 }

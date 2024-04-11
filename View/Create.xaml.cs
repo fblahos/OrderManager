@@ -1,10 +1,13 @@
-﻿using System.Windows;
+﻿using OrderManager.ViewModel;
+using System.Windows;
 namespace OrderManager.View
 {
     public partial class Create : Window
     {
         public Create()
         {
+            OrderVM orderVM = new OrderVM();
+            DataContext = orderVM;
             InitializeComponent();
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;

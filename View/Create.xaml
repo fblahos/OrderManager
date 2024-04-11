@@ -7,13 +7,9 @@
         MaxHeight="1400"
         x:Name="CreateWindow">
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <vm:OrderVM x:Key="vm" />
-        </ResourceDictionary>
-    </Window.Resources>
 
-    <Grid DataContext="{StaticResource vm}">
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="*" />
@@ -32,16 +28,15 @@
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <usercontrols:OrderControl />
-                <usercontrols:CustomerControl/>
-                <usercontrols:PlatformControl/>
+                <usercontrols:CustomerControl />
+                <usercontrols:PlatformControl />
                 <usercontrols:MaterialControl />
-
             </StackPanel>
         </ScrollViewer>
 
         <!-- Create Button -->
         <Button Style="{StaticResource saveOrderButtonStyle}"
-                Command="{Binding NewOrderCommand}" />
+                Command="{Binding CreateOrderCommand}" />
 
     </Grid>
 </Window>

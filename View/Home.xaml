@@ -8,15 +8,7 @@
         Height="900" Width="1600" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized"
         AllowsTransparency="True" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="Transparent"
         x:Name="HomeWindow">
-
-    <Window.Resources>
-        <ResourceDictionary>
-            <vm:OrderVM x:Key="vm" />
-        </ResourceDictionary>
-    </Window.Resources>
-  
-    <Border Background="#eff2f7" CornerRadius="20" DataContext="{StaticResource vm}">
-
+    <Border Background="#eff2f7" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250" />
@@ -137,12 +129,6 @@
 
             <!--Pravý sloupec-->
             <Grid Grid.Column="1">
-                <Grid.DataContext>
-                    <vm:OrderVM />
-                </Grid.DataContext>
-                <Grid.BindingGroup>
-                    <BindingGroup />
-                </Grid.BindingGroup>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
@@ -174,7 +160,7 @@
 
                 <!--Nová zakázka tlačítko-->
                 <Button Style="{StaticResource newOrderButtonStyle}" 
-                     Command="{Binding AddOrderCommand}">
+                     Command="{Binding CreateWindowCommand}">
 
                     <Icons:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Height="20" Width="20"
                             HorizontalAlignment="Center" Margin="5,5" />
@@ -190,14 +176,14 @@
                 <!--Separátor-->
                 <Separator Height="10" Grid.Row="2" Background="#dae2ea" Margin="40,0" />
   
-                <DataGrid  DataContext="{StaticResource vm}"
+                <DataGrid
                     CellStyle="{StaticResource DataGridCellStyle}" Style="{StaticResource DataGridStyle}"
                         x:Name="orderDataGrid" RowStyle="{StaticResource DataGridRowStyle}"
                         ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
                         MouseRightButtonDown="orderDataGrid_RightClick"
-                           ItemsSource="{Binding Orders, Mode=TwoWay}"
+                        ItemsSource="{Binding Orders, Mode=TwoWay}"
                         SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                  
+                
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}" Visibility="Collapsed" />
@@ -211,23 +197,22 @@
                         <DataGridTextColumn Header="Odpovědná osoba" />
                         <DataGridTemplateColumn Header="Akce" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" DataContext="{StaticResource vm}">
+                                <DataTemplate >
+                                    <StackPanel Orientation="Horizontal">
                                         <Button Style="{StaticResource doneOrderButtonStyle}">
                                             <Icons:PackIconMaterial Kind="CheckOutline" />
                                         </Button>
 
                                         <Button x:Name="updateOrderButton"
                                                 Style="{StaticResource editOrderButtonStyle}"
-                                                Command="{Binding AddOrderCommand}">
+                                                Command="{Binding EditOrderCommand}">
                                             <Icons:PackIconMaterial Kind="PencilOutline" />
                                         </Button>
 
                                         <Button x:Name="deleteOrderButton"
                                                 Style="{StaticResource deleteOrderButtonStyle}"
                                                 Command="{Binding DeleteOrderCommand}"
-                                                CommandParameter="{Binding SelectedOrder}">
-
+                                                CommandParameter="{Binding DeleteOrderCommand}">
                                             <Icons:PackIconMaterial Kind="DeleteOutline" />
                                         </Button>
 

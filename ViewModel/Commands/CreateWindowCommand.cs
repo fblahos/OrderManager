@@ -4,14 +4,14 @@ using System.Windows.Input;
 
 namespace OrderManager.ViewModel.Commands
 {
-    internal class AddOrderCommand : ICommand
+    public class CreateWindowCommand : ICommand
     {
 
-        public OrderVM OrderVM { get; set; }
+        public HomeVM HomeVM { get; set; }
 
-        public AddOrderCommand(OrderVM orderVM)
+        public CreateWindowCommand(HomeVM homeVM)
         {
-            OrderVM = orderVM;
+            HomeVM = homeVM;
         }
 
         public event EventHandler? CanExecuteChanged;

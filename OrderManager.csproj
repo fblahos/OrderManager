@@ -23,7 +23,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.9" />
 		<PackageReference Include="DataGridExtensions" Version="2.6.0" />
 		<PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />

@@ -21,25 +21,7 @@
         <ScrollViewer x:Name="scrollViewer" Grid.Row="1" HorizontalScrollBarVisibility="Disabled"
                 VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="controlsStackPanel">
-                <controls:OrderControl x:Name="orderControl" />
-
-                <controls:CustomerControl x:Name="customerControl">
-                    <controls:CustomerControl.DataContext>
-                        <model:Customer />
-                    </controls:CustomerControl.DataContext>
-                </controls:CustomerControl>
-
-                <controls:PlatformControl x:Name="platformControl">
-                    <controls:PlatformControl.DataContext>
-                        <model:Platform />
-                    </controls:PlatformControl.DataContext>
-                </controls:PlatformControl>
-
-                <controls:MaterialControl x:Name="materialControl">
-                    <controls:MaterialControl.DataContext>
-                        <model:MaterialSurface />
-                    </controls:MaterialControl.DataContext>
-                </controls:MaterialControl>
+                
             </StackPanel>
         </ScrollViewer>
 

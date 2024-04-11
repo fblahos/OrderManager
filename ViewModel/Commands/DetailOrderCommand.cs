@@ -2,15 +2,15 @@
 
 namespace OrderManager.ViewModel.Commands
 {
-    class ReadOrderCommand : ICommand
+    public class DetailOrderCommand : ICommand
     {
-        public OrderVM ViewModel { get; set; }
+        public HomeVM HomeVM { get; set; }
 
         public event EventHandler? CanExecuteChanged;
 
-        public ReadOrderCommand(OrderVM vm)
+        public DetailOrderCommand(HomeVM homeVM)
         {
-            ViewModel = vm;
+            HomeVM = homeVM;
         }
 
         public bool CanExecute(object? parameter)
@@ -20,7 +20,7 @@ namespace OrderManager.ViewModel.Commands
 
         public void Execute(object? parameter)
         {
-            ViewModel.CreateOrder();
+
         }
     }
 }

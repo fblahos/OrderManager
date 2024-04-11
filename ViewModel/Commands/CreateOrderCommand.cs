@@ -3,10 +3,10 @@ using System.Windows.Input;
 
 namespace OrderManager.ViewModel.Commands
 {
-    class NewOrderCommand : ICommand
+    public class CreateOrderCommand : ICommand
     {
         public OrderVM OrderVM { get; set; }
-        public NewOrderCommand(OrderVM orderVM)
+        public CreateOrderCommand(OrderVM orderVM)
         {
             OrderVM = orderVM;
         }
