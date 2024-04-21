@@ -1,14 +1,14 @@
 ﻿using System.Windows.Input;
 
-namespace OrderManager.ViewModel.Commands
+namespace OrderManager.ViewModel.Commands.HomeViewModelCommands
 {
-    public class EditOrderCommand : ICommand
+    public class PreviousPageCommand : ICommand
     {
         public HomeVM HomeVM { get; set; }
 
         public event EventHandler? CanExecuteChanged;
 
-        public EditOrderCommand(HomeVM homeVM)
+        public PreviousPageCommand(HomeVM homeVM)
         {
             HomeVM = homeVM;
         }
@@ -20,6 +20,7 @@ namespace OrderManager.ViewModel.Commands
 
         public void Execute(object? parameter)
         {
+            HomeVM.MoveToPreviousPage();
 
         }
     }

@@ -1,39 +1,31 @@
 ﻿using OrderManager.Model;
+using OrderManager.ViewModel.Helpers;
 using System.Windows;
 
 namespace OrderManager
 {
-    /// <summary>
-    /// Interaction logic for Update.xaml
-    /// </summary>
+
     public partial class Update : Window
     {
+        Order UpdatedOrder { get; set; }
 
         public Update(Order selectedOrder)
         {
+            UpdatedOrder = selectedOrder;
             InitializeComponent();
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             orderControl.DataContext = selectedOrder;
-
-            //UpdateDatabase(selectedOrder);
-
-
+            platformControl.DataContext = DatabaseHelper.Read<Platform>().Where(x => x.Id == selectedOrder.PlatformId).First();
+            supplierControl.DataContext = DatabaseHelper.Read<Supplier>().Where(x => x.Id == selectedOrder.SupplierId).First();
+            deliveryAddressControl.DataContext = DatabaseHelper.Read<DeliveryAddress>().Where(x => x.Id == selectedOrder.DeliveryAddressId).First();
+            distributorControl.DataContext = DatabaseHelper.Read<Distributor>().Where(x => x.Id == selectedOrder.DistributorId).First();
+            materialControl.DataContext = DatabaseHelper.Read<MaterialSurface>().Where(x => x.Id == selectedOrder.MaterialSurfaceId).First();
         }
-
-        //Aktualizace
-        //private void UpdateDatabase(Order selectedOrder)
-        //{
-
-        //    using SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath);
-
-        //    connection.Update(selectedOrder);
-        //}
-
-
         //Zavření okna
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            DatabaseHelper.Update(UpdatedOrder);
             this.Close();
         }
 

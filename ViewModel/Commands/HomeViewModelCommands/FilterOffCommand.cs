@@ -1,14 +1,14 @@
 ﻿using System.Windows.Input;
 
-namespace OrderManager.ViewModel.Commands
+namespace OrderManager.ViewModel.Commands.HomeViewModelCommands
 {
-    public class DetailOrderCommand : ICommand
+    public class FilterOffCommand : ICommand
     {
         public HomeVM HomeVM { get; set; }
 
         public event EventHandler? CanExecuteChanged;
 
-        public DetailOrderCommand(HomeVM homeVM)
+        public FilterOffCommand(HomeVM homeVM)
         {
             HomeVM = homeVM;
         }
@@ -20,7 +20,7 @@ namespace OrderManager.ViewModel.Commands
 
         public void Execute(object? parameter)
         {
-
+            HomeVM.SetFiltersOff();
         }
     }
 }

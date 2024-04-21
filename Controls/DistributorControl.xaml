@@ -1,0 +1,78 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:OrderManager.Controls" xmlns:Model="clr-namespace:OrderManager.Model"
+        x:Class="OrderManager.Controls.DistributorControl" Height="410" Width="533" FontSize="16"
+        Background="#eff2f7">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Distributor-->
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18" Text="Objednavatel"
+                    FontWeight="SemiBold" Foreground="#121518" />
+            <Separator Margin="0" Grid.ColumnSpan="2" Grid.Row="1" />
+            <TextBlock Grid.Column="0" Grid.Row="2" FontWeight="bold" Text="Firma" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="2" Text="{Binding DistributorCompany, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="3" FontWeight="bold" Text="Jméno" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="3" Text="{Binding DistributorName, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="4" FontWeight="bold" Text="Ulice" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="4" Text="{Binding DistributorStreet, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="5" FontWeight="bold" Text="PSČ" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="5" Text="{Binding DistributorZipCode, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="6" FontWeight="bold" Text="Město" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="6" Text="{Binding DistributorCity, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="7" FontWeight="bold" Text="Stát" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="7" Text="{Binding DistributorCountry, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="8" FontWeight="bold" Text="Telefon" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="8" Text="{Binding DistributorPhone, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="9" FontWeight="bold" Text="Email" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="9" Text="{Binding DistributorEmail, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="10" FontWeight="bold" Text="ID" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="10"
+                    Text="{Binding DistributorIdentitycard, Mode=TwoWay}" />
+
+            <TextBlock Grid.Column="0" Grid.Row="11" FontWeight="bold" Text="VAT ID" Margin="0,5" />
+            <TextBox Margin="0,5" Grid.Column="1" Grid.Row="11" Text="{Binding DistributorVatId, Mode=TwoWay}" />
+        </Grid>
+    </Grid>
+</UserControl>

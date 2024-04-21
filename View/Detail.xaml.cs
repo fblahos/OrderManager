@@ -1,65 +1,48 @@
-﻿using OrderManager.Controls;
-using OrderManager.Model;
+﻿using OrderManager.Model;
+using OrderManager.ViewModel.Helpers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace OrderManager.View
 {
-    /// <summary>
-    /// Interaction logic for Detail.xaml
-    /// </summary>
+
     public partial class Detail : Window
     {
         public Detail(Order selectedOrder)
         {
-            OrderControl orderControl = new OrderControl();
             InitializeComponent();
             Owner = Application.Current.MainWindow;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            ZamknutiVlastnosti();
-            ShowDialog();
+            orderControl.DataContext = selectedOrder;
+            platformControl.DataContext = DatabaseHelper.Read<Platform>().Where(x => x.Id == selectedOrder.PlatformId).First();
+            supplierControl.DataContext = DatabaseHelper.Read<Supplier>().Where(x => x.Id == selectedOrder.SupplierId).First();
+            deliveryAddressControl.DataContext = DatabaseHelper.Read<DeliveryAddress>().Where(x => x.Id == selectedOrder.DeliveryAddressId).First();
+            distributorControl.DataContext = DatabaseHelper.Read<Distributor>().Where(x => x.Id == selectedOrder.DistributorId).First();
+            materialControl.DataContext = DatabaseHelper.Read<MaterialSurface>().Where(x => x.Id == selectedOrder.MaterialSurfaceId).First();
+            LockControls();
         }
+
+        //Zavření okna
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        //Pohyb okna pomocí levého tlačítka myši
         private void Window_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this.DragMove();
         }
 
-        private void ZamknutiVlastnosti()
+
+        //Uzamčení UI
+        private void LockControls()
         {
-            // Získání všech ovládacích prvků ve vašem controlu OrderDetail
-            var orderDetailControls = GetAllControls(controlsStackPanel);
-
-            // Nastavit IsEnabled na false pro všechny ovládací prvky ve vašem controlu OrderDetail
-            foreach (var control in orderDetailControls)
-            {
-                control.IsEnabled = false;
-            }
+            orderControl.IsEnabled = false;
+            supplierControl.IsEnabled = false;
+            distributorControl.IsEnabled = false;
+            deliveryAddressControl.IsEnabled = false;
+            platformControl.IsEnabled = false;
+            materialControl.IsEnabled = false;
         }
-
-        // Pomocná metoda pro nalezení všech ovládacích prvků v daném controlu a jeho potomcích
-        public static IEnumerable<Control> GetAllControls(DependencyObject parent)
-        {
-            if (parent is Control control)
-            {
-                yield return control;
-            }
-
-            var childrenCount = VisualTreeHelper.GetChildrenCount(parent);
-            for (var i = 0; i < childrenCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-                foreach (var descendant in GetAllControls(child))
-                {
-                    yield return descendant;
-                }
-            }
-        }
-
     }
 }

@@ -23,10 +23,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="DataGridExtensions" Version="2.6.0" />
 		<PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Controls\DeliveryAddressControl.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <Compile Update="Controls\DistributorControl.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>

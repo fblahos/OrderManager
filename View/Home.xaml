@@ -12,12 +12,12 @@
     <Window.Resources>
         <ResourceDictionary>
             <vm:HomeVM x:Key="HomeVM" />
-            <vm:CreateOrderVM x:Key="OrderVM" />
+            <vm:OrderVM x:Key="OrderVM" />
         </ResourceDictionary>
     </Window.Resources>
 
     <Border Background="#eff2f7" CornerRadius="20">
-        <Grid>
+        <Grid DataContext="{StaticResource HomeVM}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250" />
                 <ColumnDefinition Width="*" />
@@ -41,8 +41,8 @@
                             Foreground="black" Visibility="Visible" Panel.ZIndex="1" FontSize="17"
                             VerticalAlignment="Center" IsHitTestVisible="False" />
 
-                    <TextBox x:Name="textBoxSearch" Style="{StaticResource searchBoxStyle}"
-                            GotFocus="textBoxSearch_GotFocus" TextChanged="TextBox_TextChanged" />
+                    <TextBox  Style="{StaticResource searchBoxStyle}" GotFocus="textBoxSearch_GotFocus"
+                            Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <Icons:PackIconMaterial Kind="Magnify" Width="18" HorizontalAlignment="Right" Margin="0,0,10,0"
                             VerticalAlignment="Center" Foreground="black" IsHitTestVisible="False" />
@@ -56,9 +56,9 @@
                 <Grid Grid.Row="3" Margin="20,0">
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="5" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <!--Produkty-->
@@ -87,35 +87,47 @@
                             Foreground="white" HorizontalAlignment="Left" VerticalAlignment="Center" />
 
                     <!--Produkty-->
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="1" Grid.Column="0"
-                            Content="Stratos" Click="ApplyFilters" Tag="Product" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="1" Grid.Column="2" Content="Omega"
-                            Click="ApplyFilters" Tag="Product" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="2" Grid.Column="0" Content="Alfa"
-                            Click="ApplyFilters" Tag="Product" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="2" Grid.Column="2"
-                            Content="Monorail" Click="ApplyFilters" Tag="Product" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="3" Grid.Column="0" Content="Sigma"
-                            Click="ApplyFilters" Tag="Product" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="3" Grid.Column="2"
-                            Content="Z + ZP" Click="ApplyFilters" Tag="Product" />
+                    <Button Tag="Product" Style="{StaticResource filterButtonStyle}" Grid.Row="1" Grid.Column="0"
+                            Content="Stratos" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Product" Style="{StaticResource filterButtonStyle}" Grid.Row="1" Grid.Column="2"
+                            Content="Omega" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Product" Style="{StaticResource filterButtonStyle}" Grid.Row="2" Grid.Column="0"
+                            Content="Alfa" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Product" Style="{StaticResource filterButtonStyle}" Grid.Row="2" Grid.Column="2"
+                            Content="Monorail" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Product" Style="{StaticResource filterButtonStyle}" Grid.Row="3" Grid.Column="0"
+                            Content="Sigma" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Product" Style="{StaticResource filterButtonStyle}" Grid.Row="3" Grid.Column="2"
+                            Content="Z + ZP " Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
 
                     <TextBlock Text="Operace" Grid.Row="5" Grid.Column="0" FontWeight="SemiBold" FontSize="15"
                             Foreground="white" HorizontalAlignment="Left" VerticalAlignment="Center" />
 
                     <!--Operace-->
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="6" Grid.Column="0"
-                            Content="Zástavba" Click="ApplyFilters" Tag="Operation" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="6" Grid.Column="2"
-                            Content="Výkresy" Click="ApplyFilters" Tag="Operation" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="7" Grid.Column="0"
-                            Content="Generování" Click="ApplyFilters" Tag="Operation" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="7" Grid.Column="2"
-                            Content="Elektro" Click="ApplyFilters" Tag="Operation" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="8" Grid.Column="0"
-                            Content="Uzavření" Click="ApplyFilters" Tag="Operation" />
-                    <Button Style="{StaticResource filterButtonStyle}" Grid.Row="8" Grid.Column="2"
-                            Content="Měření" Click="ApplyFilters" Tag="Operation" />
+                    <Button Tag="Operation" Style="{StaticResource filterButtonStyle}" Grid.Row="6" Grid.Column="0"
+                            Content="Zástavba" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Operation" Style="{StaticResource filterButtonStyle}" Grid.Row="6" Grid.Column="2"
+                            Content="Výkresy" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Operation" Style="{StaticResource filterButtonStyle}" Grid.Row="7" Grid.Column="0"
+                            Content="Generování" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Operation" Style="{StaticResource filterButtonStyle}" Grid.Row="7" Grid.Column="2"
+                            Content="Elektro" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Operation" Style="{StaticResource filterButtonStyle}" Grid.Row="8" Grid.Column="0"
+                            Content="Uzavření" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
+                    <Button Tag="Operation" Style="{StaticResource filterButtonStyle}" Grid.Row="8" Grid.Column="2"
+                            Content="Měření" Command="{Binding FilterOnCommand}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
 
                     <!--Týden výroby-->
                     <TextBlock Text="Týden výroby" Grid.Row="10" Grid.Column="0" FontWeight="SemiBold"
@@ -124,8 +136,8 @@
                             SelectionChanged="weekOfManufactureList_SelectionChanged" />
 
                     <!--Tlačítko - zruš všechny filtry-->
-                    <Button Style="{StaticResource FiltersOffButtonStyle}" x:Name="allFiltersOffButton"
-                            Click="allFiltersOffButton_Click">
+                    <Button Style="{StaticResource FiltersOffButtonStyle}" Command="{Binding FilterOffCommand}">
+
                         <Icons:PackIconMaterial Kind="FilterRemove" VerticalAlignment="Center" Height="25"
                                 Width="25" HorizontalAlignment="Center" Margin="0,0" />
                     </Button>
@@ -167,9 +179,8 @@
                         HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#121518" />
 
                 <!--Nová zakázka tlačítko-->
-                <Button DataContext="{StaticResource HomeVM}"
-                    Style="{StaticResource newOrderButtonStyle}" 
-                     Command="{Binding CreateWindowCommand}">
+                <Button DataContext="{StaticResource HomeVM}" Style="{StaticResource newOrderButtonStyle}"
+                        Command="{Binding CreateWindowCommand}">
 
                     <Icons:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Height="20" Width="20"
                             HorizontalAlignment="Center" Margin="5,5" />
@@ -185,14 +196,12 @@
                 <!--Separátor-->
                 <Separator Height="10" Grid.Row="2" Background="#dae2ea" Margin="40,0" />
 
-
-                <DataGrid
-                    CellStyle="{StaticResource DataGridCellStyle}" Style="{StaticResource DataGridStyle}"
-                        x:Name="orderDataGrid" RowStyle="{StaticResource DataGridRowStyle}"
+                <DataGrid Margin="20,0,30,0" CellStyle="{StaticResource DataGridCellStyle}"
+                        Style="{StaticResource DataGridStyle}" x:Name="orderDataGrid"
+                        RowStyle="{StaticResource DataGridRowStyle}"
                         ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
-                        MouseRightButtonDown="orderDataGrid_RightClick" 
                         DataContext="{StaticResource HomeVM}"
-                        ItemsSource="{Binding Orders, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        ItemsSource="{Binding OrdersForPage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                         SelectedItem="{Binding SelectedOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
                     <DataGrid.Columns>
@@ -213,16 +222,21 @@
                                             <Icons:PackIconMaterial Kind="CheckOutline" />
                                         </Button>
 
-                                        <Button x:Name="updateOrderButton"
-                                                Style="{StaticResource editOrderButtonStyle}"
-                                                Command="{Binding EditOrderCommand}">
+                                        <Button Style="{StaticResource editOrderButtonStyle}"
+                                                Command="{Binding DetailOrderCommand}"
+                                                CommandParameter="{Binding SelectedOrder}">
+                                            <Icons:PackIconMaterial Kind="Eye" />
+                                        </Button>
+
+                                        <Button Style="{StaticResource editOrderButtonStyle}"
+                                                Command="{Binding UpdateOrderCommand}"
+                                                CommandParameter="{Binding SelectedOrder}">
                                             <Icons:PackIconMaterial Kind="PencilOutline" />
                                         </Button>
 
-                                        <Button x:Name="deleteOrderButton"
-                                                Style="{StaticResource deleteOrderButtonStyle}"
+                                        <Button Style="{StaticResource deleteOrderButtonStyle}"
                                                 Command="{Binding DeleteOrderCommand}"
-                                                CommandParameter="{Binding DeleteOrderCommand}">
+                                                CommandParameter="{Binding SelectedOrder}">
                                             <Icons:PackIconMaterial Kind="DeleteOutline" />
                                         </Button>
 
@@ -234,20 +248,20 @@
                 </DataGrid>
 
                 <!--Dolní lišta-->
-                <TextBlock x:Name="numberOfOrdersTextBlock" Grid.Row="4" Text="0" VerticalAlignment="Center"
+                <TextBlock Grid.Row="4" Text="{Binding OrdersCount}" VerticalAlignment="Center"
                         HorizontalAlignment="Center" FontSize="17" />
 
                 <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="center"
                         HorizontalAlignment="Left" Margin="100,0,0,0">
 
-                    <Button x:Name="pageMinus" Click="pageMinus_Click" Style="{StaticResource pageNumberStyle}"
+                    <Button Style="{StaticResource pageNumberStyle}" Command="{Binding PreviousPageCommand}"
                             Margin="0,0,15,0">
                         <Icons:PackIconMaterial Kind="ArrowLeftBoldCircle" VerticalAlignment="Center" Height="25"
                                 Width="25" HorizontalAlignment="Center" />
                     </Button>
-                    <TextBlock x:Name="pageNumberTextBlock" Text="1" FontSize="17" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding PageNumber}" FontSize="17" VerticalAlignment="Center" />
 
-                    <Button x:Name="pagePlus" Click="pagePlus_Click" Style="{StaticResource pageNumberStyle}"
+                    <Button Style="{StaticResource pageNumberStyle}" Command="{Binding NextPageCommand}"
                             Margin="15,0,0,0">
                         <Icons:PackIconMaterial Kind="ArrowRightBoldCircle" VerticalAlignment="Center" Height="25"
                                 Width="25" HorizontalAlignment="Center" />

@@ -33,52 +33,68 @@
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Horní nájezd"
                         VerticalAlignment="Center" />
-                <ComboBox x:Name="horniNajezdComboBox" SelectedItem="{Binding HorniNajezd, Mode=TwoWay}">
-                    <ComboBoxItem>150</ComboBoxItem>
-                    <ComboBoxItem>200</ComboBoxItem>
-                    <ComboBoxItem>300</ComboBoxItem>
+                <ComboBox SelectedValue="{Binding UpperRamp, Mode=TwoWay}" SelectedValuePath="Content">
+                    <ComboBoxItem>110 mm</ComboBoxItem>
+                    <ComboBoxItem>150 mm</ComboBoxItem>
+                    <ComboBoxItem>200 mm</ComboBoxItem>
+                    <ComboBoxItem>250 mm</ComboBoxItem>
+                    <ComboBoxItem>300 mm</ComboBoxItem>
                     <ComboBoxItem>žádný</ComboBoxItem>
                 </ComboBox>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Dolní nájezd"
                         VerticalAlignment="Center" />
-                <ComboBox SelectedItem="{Binding DolniNajezd, Mode=TwoWay}">
-                    <ComboBoxItem>150</ComboBoxItem>
-                    <ComboBoxItem>200</ComboBoxItem>
-                    <ComboBoxItem>300</ComboBoxItem>
+
+                <ComboBox SelectedValue="{Binding LowerRamp, Mode=TwoWay}" SelectedValuePath="Content">
+                    <ComboBoxItem>110 mm</ComboBoxItem>
+                    <ComboBoxItem>150 mm</ComboBoxItem>
+                    <ComboBoxItem>200 mm</ComboBoxItem>
+                    <ComboBoxItem>250 mm</ComboBoxItem>
+                    <ComboBoxItem>300 mm</ComboBoxItem>
                     <ComboBoxItem>žádný</ComboBoxItem>
                 </ComboBox>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Čelní nájezd"
                         VerticalAlignment="Center" />
-                <ComboBox SelectedItem="{Binding Platform.CelniNajezd, Mode=TwoWay}">
-                    <ComboBoxItem>150</ComboBoxItem>
-                    <ComboBoxItem>200</ComboBoxItem>
-                    <ComboBoxItem>300</ComboBoxItem>
+
+                <ComboBox SelectedValue="{Binding FrontRamp, Mode=TwoWay}" SelectedValuePath="Content">
+                    <ComboBoxItem>110 mm</ComboBoxItem>
+                    <ComboBoxItem>150 mm</ComboBoxItem>
+                    <ComboBoxItem>200 mm</ComboBoxItem>
+                    <ComboBoxItem>250 mm</ComboBoxItem>
+                    <ComboBoxItem>300 mm</ComboBoxItem>
                     <ComboBoxItem>žádný</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <RadioButton GroupName="Options" Content="Pevné čelo"
-                        Style="{StaticResource SquareRadioButtonStyle}" />
+                        Style="{StaticResource SquareRadioButtonStyle}"
+                        IsChecked="{Binding IsFixedFront, Mode=TwoWay}" 
+                        IsEnabled="{Binding IsFixedFrontEnabled }"/>
                 <RadioButton GroupName="Options" Content="Sklopné čelo"
-                        Style="{StaticResource SquareRadioButtonStyle}" />
+                        Style="{StaticResource SquareRadioButtonStyle}"
+                        IsChecked="{Binding IsFoldableFront, Mode=TwoWay}"
+                        IsEnabled="{Binding IsFoldableFrontEnabled }" />
                 <RadioButton GroupName="Options" Content="Čelní nájezd 85°"
-                        Style="{StaticResource SquareRadioButtonStyle}" />
+                        Style="{StaticResource SquareRadioButtonStyle}"
+                        IsChecked="{Binding IsFrontRamp85Degrees, Mode=TwoWay}"
+                        IsEnabled="{Binding IsFrontRamp85DegreesEnabled }" />
+                
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Sedačka" VerticalAlignment="Center" />
-                <ComboBox Width="100">
-                    <ComboBoxItem>žádná</ComboBoxItem>
+                <ComboBox Width="100" SelectedValue="{Binding Seat, Mode=TwoWay}" SelectedValuePath="Content">
+                    <ComboBoxItem >žádná</ComboBoxItem>
                     <ComboBoxItem>ocelová</ComboBoxItem>
                     <ComboBoxItem>čalouněná</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,10">
+            
                 <TextBlock Grid.Column="0" Grid.Row="0" FontWeight="bold" Text="Nosnost" VerticalAlignment="Center" />
-                <ComboBox Width="80">
+                <ComboBox Width="80" SelectedValue="{Binding LoadingCapacity, Mode=TwoWay}" SelectedValuePath="Content">
                     <ComboBoxItem>225 kg</ComboBoxItem>
                     <ComboBoxItem>250 kg</ComboBoxItem>
                     <ComboBoxItem>300 kg</ComboBoxItem>
@@ -87,9 +103,11 @@
 
             <StackPanel Orientation="Horizontal" Margin="0,10">
                 <RadioButton GroupName="Folding mechanism" Content="Automat"
-                        Style="{StaticResource SquareRadioButtonStyle}" />
+                        Style="{StaticResource SquareRadioButtonStyle}"
+                        IsChecked="{Binding IsAutomaticFolding, Mode=TwoWay}" />
                 <RadioButton GroupName="Folding mechanism" Content="Manuál"
-                        Style="{StaticResource SquareRadioButtonStyle}" />
+                        Style="{StaticResource SquareRadioButtonStyle}"
+                        IsChecked="{Binding IsManualFolding, Mode=TwoWay}" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,20">

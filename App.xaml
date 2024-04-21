@@ -128,7 +128,7 @@
             <Setter Property="Content" Value="Uložit" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Grid.Row" Value="2" />
+            <Setter Property="Grid.Row" Value="3" />
             <Setter Property="Grid.Column" Value="0" />
             <Setter Property="Margin" Value="50,0" />
             <Setter Property="Height" Value="35" />
@@ -323,12 +323,29 @@
         </Style>
 
         <!--ComboBox-->
-        <Style TargetType="ComboBox">
+        <Style TargetType="{x:Type ComboBox}">
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="Width" Value="70" />
+            <Setter Property="Width" Value="90" />
             <Setter Property="Margin" Value="10,0" />
             <Setter Property="Height" Value="27" />
+            <Setter Property="Margin" Value="10,0" />
+        </Style>
+
+        <!--ListView-->
+        <Style TargetType="ListView">
+            <Setter Property="Grid.Row" Value="11" />
+            <Setter Property="Grid.ColumnSpan" Value="3" />
+            <Setter Property="Height" Value="auto" />
+            <Setter Property="MinHeight" Value="50" />
+            <Setter Property="MaxHeight" Value="100" />
+            <Setter Property="MinWidth" Value="50" />
+            <Setter Property="MaxWidth" Value="200" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
+            <Setter Property="SelectionMode" Value="Multiple" />
+            <Setter Property="UseLayoutRounding" Value="true" />
+
         </Style>
 
         <!--DataGrid obecně-->
@@ -422,21 +439,7 @@
             <Setter Property="Padding" Value="40,0,40,0" />
         </Style>
 
-        <!--ListView-->
-        <Style TargetType="ListView">
-            <Setter Property="Grid.Row" Value="11" />
-            <Setter Property="Grid.ColumnSpan" Value="3" />
-            <Setter Property="Height" Value="auto" />
-            <Setter Property="MinHeight" Value="50" />
-            <Setter Property="MaxHeight" Value="100" />
-            <Setter Property="MinWidth" Value="50" />
-            <Setter Property="MaxWidth" Value="200" />
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
-            <Setter Property="SelectionMode" Value="Multiple" />
-            <Setter Property="UseLayoutRounding" Value="true" />
-
-        </Style>
+   
 
         <!--Zrušení filtrů-->
         <Style x:Key="FiltersOffButtonStyle" TargetType="{x:Type Button}">
@@ -532,5 +535,6 @@
             </Setter>
         </Style>
 
+       
     </Application.Resources>
 </Application>

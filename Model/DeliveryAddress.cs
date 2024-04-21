@@ -1,7 +1,6 @@
 ﻿namespace OrderManager.Model
 {
-    public class Distributor : Address
+    public class DeliveryAddress : Address
     {
-
     }
 }

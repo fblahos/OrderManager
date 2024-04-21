@@ -7,11 +7,10 @@
         MaxHeight="1400"
         x:Name="CreateWindow">
 
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="40" />
             <RowDefinition Height="20" />
@@ -19,22 +18,28 @@
 
         <!-- Header Controls -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="top" HorizontalAlignment="Right"
-                Margin="0">
+                Margin="0,0,10,0">
             <Button x:Name="btnClose" Width="30" Height="30" BorderBrush="Transparent" Background="Transparent"
                     Foreground="black" Content="✕" Click="btnClose_Click" FontSize="14" FontWeight="Bold" />
         </StackPanel>
+        <StackPanel Grid.Row="1">
+            <usercontrols:OrderControl x:Name="orderControl" />
+        </StackPanel>
 
         <!-- Content inside ScrollViewer -->
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <usercontrols:OrderControl />
-                <usercontrols:CustomerControl />
-                <usercontrols:PlatformControl />
-                <usercontrols:MaterialControl />
+                <StackPanel Orientation="Horizontal">
+                    <usercontrols:SupplierControl x:Name="SupplierCOntrol" />
+                    <usercontrols:DistributorControl x:Name="DistributorControl" />
+                    <usercontrols:DeliveryAddressControl x:Name="DeliveryAddressControl" />
+                </StackPanel>
+                <usercontrols:PlatformControl x:Name="platformControl" />
+                <usercontrols:MaterialControl x:Name="materialControl" />
             </StackPanel>
         </ScrollViewer>
 
-        <!-- Create Button -->
+    <!-- Create Button -->
         <Button Style="{StaticResource saveOrderButtonStyle}"
                 Command="{Binding CreateOrderCommand}" />
 

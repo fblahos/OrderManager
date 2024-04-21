@@ -1,5 +1,5 @@
 ﻿<Window x:Class="OrderManager.Update" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:OrderManager.Controls"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:usercontrols="clr-namespace:OrderManager.Controls"
         xmlns:model="clr-namespace:OrderManager.Model" WindowStartupLocation="CenterOwner" WindowStyle="None"
         WindowState="Normal" MouseLeftButtonDown="Window_MouseLeftButtonDown" Background="#eff2f7" Width="1600"
         MaxWidth="1600">
@@ -7,40 +7,33 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="40" />
+            <!--<RowDefinition Height="40" />-->
+            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
         <!-- Header Controls -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right"
-                Margin="5,0">
-            <Button x:Name="btnMaximize" Width="40" Height="40" BorderBrush="Transparent" Background="Transparent"
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="top" HorizontalAlignment="Right"
+                Margin="0,0,10,0">
+            <Button x:Name="btnClose" Width="30" Height="30" BorderBrush="Transparent" Background="Transparent"
                     Foreground="black" Content="✕" Click="btnClose_Click" FontSize="14" FontWeight="Bold" />
         </StackPanel>
+        <StackPanel Grid.Row="1">
+            <usercontrols:OrderControl x:Name="orderControl" />
+        </StackPanel>
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <!-- Content inside ScrollViewer -->
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <controls:OrderControl x:Name="orderControl" />
-
-                <controls:CustomerControl x:Name="customerControl">
-                    <controls:CustomerControl.DataContext>
-                        <model:Customer />
-                    </controls:CustomerControl.DataContext>
-                </controls:CustomerControl>
-
-                <controls:PlatformControl x:Name="platformControl">
-                    <controls:PlatformControl.DataContext>
-                        <model:Platform />
-                    </controls:PlatformControl.DataContext>
-                </controls:PlatformControl>
-
-                <controls:MaterialControl x:Name="materialControl">
-                    <controls:MaterialControl.DataContext>
-                        <model:MaterialSurface />
-                    </controls:MaterialControl.DataContext>
-                </controls:MaterialControl>
+                <StackPanel Orientation="Horizontal">
+                    <usercontrols:SupplierControl x:Name="supplierControl" />
+                    <usercontrols:DistributorControl x:Name="distributorControl" />
+                    <usercontrols:DeliveryAddressControl x:Name="deliveryAddressControl" />
+                </StackPanel>
+                <usercontrols:PlatformControl x:Name="platformControl" />
+                <usercontrols:MaterialControl x:Name="materialControl" />
             </StackPanel>
         </ScrollViewer>
-
     </Grid>
 </Window>

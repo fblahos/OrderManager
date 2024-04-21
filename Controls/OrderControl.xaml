@@ -25,13 +25,13 @@
             <TextBlock FontWeight="bold" Text="Číslo zakázky" Margin="10,0,0,0" FontSize="18" Foreground="white"
                     VerticalAlignment="Center" />
             <TextBox x:Name="orderNumberTextBox" Margin="10,5" Width="200" Height="30" FontSize="18"
-                    Text="{Binding Number}" CharacterCasing="Upper">
+                    Text="{Binding Number, Mode=TwoWay}" CharacterCasing="Upper">
 
             </TextBox>
             <TextBlock FontWeight="bold" Text="Název zakázky" Margin="50,0,0,0" FontSize="18" Foreground="white"
                     VerticalAlignment="Center" />
             <TextBox x:Name="orderNameTextBox" Margin="10,5" Width="500" Height="30" FontSize="18"
-                    Text="{Binding Name}" />
+                    Text="{Binding Name, Mode=TwoWay}" />
 
             <Icons:PackIconMaterial Kind="Folder" Height="30" Width="30" VerticalAlignment="Center"
                     Foreground="#FFFFDD7C" Margin="100,0,0,0" />

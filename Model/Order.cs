@@ -12,30 +12,30 @@ namespace OrderManager.Model
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-
-        [SQLite.MaxLength(50)]
-
         public string? Name { get; set; }
-
-        [SQLite.MaxLength(100)]
-        [Required]
         public string? Number { get; set; }
-
-        [SQLite.MaxLength(50)]
-        [Required]
         public int? WeekOfManufacture { get; set; }
-
         public string? Product { get; set; }
         public string? Status { get; set; }
         public string? Operation { get; set; }
         public string? Date { get; set; }
 
-        [ForeignKey("Customer")] // Odkaz na třídu Customer
-        public int CustomerId { get; set; }
 
-
-        [ForeignKey("Platform")] // Odkaz na třídu Customer
+        [ForeignKey("Platform")]
         public int PlatformId { get; set; }
+
+        [ForeignKey("Supplier")]
+        public int SupplierId { get; set; }
+
+        [ForeignKey("Distributor")]
+        public int DistributorId { get; set; }
+
+        [ForeignKey("DeliveryAddress")]
+        public int DeliveryAddressId { get; set; }
+
+        [ForeignKey("MaterialSurface")]
+        public int MaterialSurfaceId { get; set; }
+
 
 
 
