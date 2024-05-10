@@ -68,9 +68,16 @@ namespace OrderManager.ViewModel.Helpers
             {
                 connection.CreateTable<T>();
                 items = connection.Table<T>().ToList();
+
             }
 
             return items;
         }
+
+
+
+
+
     }
 }
+

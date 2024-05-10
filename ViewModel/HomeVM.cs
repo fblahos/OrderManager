@@ -28,7 +28,14 @@ namespace OrderManager.ViewModel
         private static readonly int ordersPerPageCount = 27;
 
         [ObservableProperty]
+        private static List<int>? weeksOfManufacture;
+
+        [ObservableProperty]
         private int pageNumber = 1;
+
+
+        [ObservableProperty]
+        private int allPagesCount;
 
         [ObservableProperty]
         private int ordersCount;
@@ -39,8 +46,14 @@ namespace OrderManager.ViewModel
         [ObservableProperty]
         private Order? selectedOrder;
 
+
+        [ObservableProperty]
+        private int? selectedWeek;
+
+
         public HomeVM()
         {
+            weeksOfManufacture = new List<int>();
             clickedButtons = new List<Button>();
             Orders = new ObservableCollection<Order>();
             OrdersForPage = new ObservableCollection<Order>();
@@ -58,12 +71,20 @@ namespace OrderManager.ViewModel
 
         partial void OnSearchTextChanged(string searchingText)
         {
-            if (searchingText.Length > 5)
-            {
-                GetOrders(true, searchingText);
+            PageNumber = 1;
 
+            if ((searchingText.Length > 5) || (searchingText.Length == 0))
+            {
+                GetOrders(searchingText, null);
             }
         }
+
+        partial void OnSelectedWeekChanged(int? week)
+        {
+            PageNumber = 1;
+            GetOrders(null, week);
+        }
+
 
         public void DeleteOrder()
         {
@@ -75,12 +96,14 @@ namespace OrderManager.ViewModel
         }
 
 
-        public void GetOrders(bool IsSearchTextActive = false, string? searchingText = null)
+        public void GetOrders(string? searchingText = null, int? week = null)
         {
             Orders?.Clear();
             OrdersForPage?.Clear();
+            WeeksOfManufacture?.Clear();
 
             List<Order> ordersFromDatabase = DatabaseHelper.Read<Order>();
+            ordersFromDatabase = ordersFromDatabase.OrderBy(o => o.WeekOfManufacture).ToList();
 
             if (clickedButtons?.Count > 0)
             {
@@ -95,10 +118,30 @@ namespace OrderManager.ViewModel
 
             foreach (var item in ordersFromDatabase)
             {
+                WeeksOfManufacture?.Add((int)item.WeekOfManufacture);
+            }
+
+            if (week != null)
+            {
+                ordersFromDatabase = FilterHelper.FilterByWeeks(ordersFromDatabase, week);
+            }
+
+            foreach (var item in ordersFromDatabase)
+            {
                 Orders?.Add(item);
             }
 
+            WeeksOfManufacture = WeeksOfManufacture?.OrderBy(o => o).ToList();
+            WeeksOfManufacture = (WeeksOfManufacture?.Distinct().ToList());
+
             OrdersCount = Orders.Count;
+            AllPagesCount = (int)Math.Ceiling((double)OrdersCount / ordersPerPageCount);
+
+            if (OrdersCount == 0)
+            {
+                AllPagesCount = 1;
+
+            }
 
             List<Order>? ordersPerPage = Orders?.Skip((PageNumber - 1) * ordersPerPageCount).Take(ordersPerPageCount).ToList();
 
@@ -111,7 +154,7 @@ namespace OrderManager.ViewModel
 
         public void MoveToNextPage()
         {
-            if (Math.Ceiling((double)Orders.Count / ordersPerPageCount) > PageNumber)
+            if (AllPagesCount > PageNumber)
             {
                 PageNumber++;
                 GetOrders();
@@ -140,6 +183,7 @@ namespace OrderManager.ViewModel
                 clickedButtons?.Add(button);
                 ChangeButtonColor(button, false); // tlačítko je vypnuté, tak ho zapneme
             }
+            PageNumber = 1;
 
             GetOrders();
         }
@@ -147,11 +191,18 @@ namespace OrderManager.ViewModel
 
         public void SetFiltersOff()
         {
-            foreach (Button button in clickedButtons)
+            if (clickedButtons != null && clickedButtons.Count > 0)
             {
-                clickedButtons?.Remove(button);
-                ChangeButtonColor(button, true); //vypnutí tlačítka
+                for (int i = clickedButtons.Count - 1; i >= 0; i--)
+                {
+                    Button button = clickedButtons[i];
+                    clickedButtons.RemoveAt(i);
+                    ChangeButtonColor(button, true); // vypnutí tlačítka
+                }
             }
+            PageNumber = 1;
+            SelectedWeek = null;
+
             GetOrders();
         }
 

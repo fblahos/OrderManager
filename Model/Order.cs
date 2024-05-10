@@ -39,6 +39,8 @@ namespace OrderManager.Model
 
 
 
+
+
         public enum Products
         {
             [Display(Name = "Stratos")]
@@ -73,13 +75,13 @@ namespace OrderManager.Model
             Zastavba,
             [Display(Name = "Schválení")]
             Schvaleni,
-            [Display(Name = "Výkresy")]
+            [Display(Name = "Výrobní výkresy")]
             Vykresy,
-            [Display(Name = "Dimenze")]
+            [Display(Name = "Generování do Dimenze")]
             Dimenze,
-            [Display(Name = "Elektro")]
+            [Display(Name = "Generování Elektro")]
             Elektro,
-            [Display(Name = "Uzavření")]
+            [Display(Name = "Uzavření konstrukce")]
             Uzavreni,
         }
     }

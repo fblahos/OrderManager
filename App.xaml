@@ -343,7 +343,7 @@
             <Setter Property="MaxWidth" Value="200" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
-            <Setter Property="SelectionMode" Value="Multiple" />
+            <Setter Property="SelectionMode" Value="Extended" />
             <Setter Property="UseLayoutRounding" Value="true" />
 
         </Style>

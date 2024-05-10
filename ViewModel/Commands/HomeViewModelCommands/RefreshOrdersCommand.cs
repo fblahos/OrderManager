@@ -22,7 +22,7 @@ namespace OrderManager.ViewModel.Commands
 
         public void Execute(object? parameter)
         {
-            HomeVM.GetOrders();
+            HomeVM.SetFiltersOff();
         }
     }
 

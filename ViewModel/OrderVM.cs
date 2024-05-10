@@ -70,6 +70,7 @@ namespace OrderManager.ViewModel
 
         public void CreateOrder()
         {
+
             Platform platform = new Platform
             {
                 Length = this.Length,
@@ -133,11 +134,15 @@ namespace OrderManager.ViewModel
                 // zde budou vlastnosti materialu
             };
 
+
+
+
             DatabaseHelper.Insert(supplier);
             DatabaseHelper.Insert(distributor);
             DatabaseHelper.Insert(deliveryAddress);
             DatabaseHelper.Insert(platform);
             DatabaseHelper.Insert(materialSurface);
+
 
             Order order = new Order
             {
@@ -158,6 +163,10 @@ namespace OrderManager.ViewModel
             DatabaseHelper.Insert(order);
         }
 
+
+
+
     }
+
 }
 

@@ -18,6 +18,7 @@ namespace OrderManager.View
             deliveryAddressControl.DataContext = DatabaseHelper.Read<DeliveryAddress>().Where(x => x.Id == selectedOrder.DeliveryAddressId).First();
             distributorControl.DataContext = DatabaseHelper.Read<Distributor>().Where(x => x.Id == selectedOrder.DistributorId).First();
             materialControl.DataContext = DatabaseHelper.Read<MaterialSurface>().Where(x => x.Id == selectedOrder.MaterialSurfaceId).First();
+
             LockControls();
         }
 

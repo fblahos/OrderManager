@@ -117,7 +117,7 @@
                             Content="Výkresy" Command="{Binding FilterOnCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
                     <Button Tag="Operation" Style="{StaticResource filterButtonStyle}" Grid.Row="7" Grid.Column="0"
-                            Content="Generování" Command="{Binding FilterOnCommand}"
+                            Content="Dimenze" Command="{Binding FilterOnCommand}"
                             CommandParameter="{Binding RelativeSource={RelativeSource Self}}" />
                     <Button Tag="Operation" Style="{StaticResource filterButtonStyle}" Grid.Row="7" Grid.Column="2"
                             Content="Elektro" Command="{Binding FilterOnCommand}"
@@ -132,8 +132,9 @@
                     <!--Týden výroby-->
                     <TextBlock Text="Týden výroby" Grid.Row="10" Grid.Column="0" FontWeight="SemiBold"
                             FontSize="15" Foreground="white" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    <ListView x:Name="weekOfManufactureList"
-                            SelectionChanged="weekOfManufactureList_SelectionChanged" />
+                    <ListView x:Name="weeksOfManufactureListView"
+                            ItemsSource="{Binding WeeksOfManufacture, UpdateSourceTrigger=PropertyChanged}"
+                            SelectedItem="{Binding SelectedWeek, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                     <!--Tlačítko - zruš všechny filtry-->
                     <Button Style="{StaticResource FiltersOffButtonStyle}" Command="{Binding FilterOffCommand}">
@@ -260,6 +261,8 @@
                                 Width="25" HorizontalAlignment="Center" />
                     </Button>
                     <TextBlock Text="{Binding PageNumber}" FontSize="17" VerticalAlignment="Center" />
+                    <TextBlock Text=" z " FontSize="17" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding AllPagesCount}" FontSize="17" VerticalAlignment="Center" /> 
 
                     <Button Style="{StaticResource pageNumberStyle}" Command="{Binding NextPageCommand}"
                             Margin="15,0,0,0">
